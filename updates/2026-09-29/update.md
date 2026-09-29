@@ -2,12 +2,12 @@
 date: 2026-09-29
 horizon: 2036-09-29
 headline: Opening vision
-summary: Opening baseline for Russia in 2036, published before the first weekday news cycle.
+summary: Opening baseline for the Russian Federation in 2036, published before the first weekday news cycle.
 ---
 
 ## What changed today
 
-- **Set down, not revised.** There is no earlier forecast. This edition writes the first picture of Russia on 29 September 2036: the political system and succession, the economy and technology under sanctions, war and security, society and demography, energy, and relations with China, the West, and the Global South.
+- **Set down, not revised.** There is no earlier forecast. This edition writes the first picture of the Russian Federation on 29 September 2036: the political system and succession, the economy and technology under sanctions, war and security, society and demography, energy, and relations with China, the West, and the Global South.
 - **Left uncertain.** Who holds the presidency, how the war with Ukraine stands, and whether sanctions are still the binding constraint on technology and finance. The baseline does not close these.
 - **Not strengthened or weakened.** No weekday news has been folded in, so nothing in the vision was revised against a previous text.
 

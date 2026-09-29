@@ -1,10 +1,10 @@
 # Russia in 10 years
 
-A weekday record of how a ten-year forecast of Russia changes. The horizon is the publication date plus ten years. It is never a fixed year. The site is in English.
+A weekday record of how a ten-year forecast of the Russian Federation changes. The horizon is the publication date plus ten years. It is never a fixed year. The site is in English.
 
 The thing to read is the history of the revisions. Each edition leads with what moved that day. The full vision is the living text those notes revise. It is kept, and it is not the front page.
 
-A chair gathers Russia-related news. Three philosopher personas comment. Samuel von Pufendorf speaks to sovereignty, natural law, and the duties of states. Karl Popper speaks to the open society, piecemeal reform, and the refusal to treat history as a script. Socrates asks the questions that unsettle a confident forecast.
+A chair gathers Russian Federation–related news. Three philosopher personas comment. Samuel von Pufendorf speaks to sovereignty, natural law, and the duties of states. Karl Popper speaks to the open society, piecemeal reform, and the refusal to treat history as a script. Socrates asks the questions that unsettle a confident forecast.
 
 The site is static. Relative links are used throughout, so the same files work on GitHub Pages at `/russia-in-10-years/` and at a domain root.
 

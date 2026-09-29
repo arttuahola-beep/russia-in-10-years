@@ -21,7 +21,7 @@ UPDATES_DIR = ROOT / "updates"
 
 SITE_TITLE = "Russia in 10 years"
 TAGLINE = (
-    "A rolling ten-year forecast of Russia, revised on weekdays by a chair and three philosophers."
+    "A rolling ten-year forecast of the Russian Federation, revised on weekdays by a chair and three philosophers."
 )
 VISION_WORDS_MIN = 600
 VISION_WORDS_MAX = 1200
@@ -450,7 +450,7 @@ def page(title: str, description: str, depth: int, main: str) -> str:
 {indent(main, 6)}
     </main>
     <footer>
-      <p>A weekday record of how the ten-year forecast of Russia moves. The horizon is the publication date plus ten years.</p>
+      <p>A weekday record of how the ten-year forecast of the Russian Federation moves. The horizon is the publication date plus ten years.</p>
       <p>Pufendorf, Popper, and Socrates comment. A forecast, not a promise.</p>
     </footer>
   </div>
@@ -1128,11 +1128,11 @@ FAVICON = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="i
 
 README = """# Russia in 10 years
 
-A weekday record of how a ten-year forecast of Russia changes. The horizon is the publication date plus ten years. It is never a fixed year. The site is in English.
+A weekday record of how a ten-year forecast of the Russian Federation changes. The horizon is the publication date plus ten years. It is never a fixed year. The site is in English.
 
 The thing to read is the history of the revisions. Each edition leads with what moved that day. The full vision is the living text those notes revise. It is kept, and it is not the front page.
 
-A chair gathers Russia-related news. Three philosopher personas comment. Samuel von Pufendorf speaks to sovereignty, natural law, and the duties of states. Karl Popper speaks to the open society, piecemeal reform, and the refusal to treat history as a script. Socrates asks the questions that unsettle a confident forecast.
+A chair gathers Russian Federation–related news. Three philosopher personas comment. Samuel von Pufendorf speaks to sovereignty, natural law, and the duties of states. Karl Popper speaks to the open society, piecemeal reform, and the refusal to treat history as a script. Socrates asks the questions that unsettle a confident forecast.
 
 The site is static. Relative links are used throughout, so the same files work on GitHub Pages at `/russia-in-10-years/` and at a domain root.
 
