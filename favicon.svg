@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Russia in 10 years">
+  <rect width="32" height="32" rx="7" fill="#1f5c99"/>
+  <circle cx="16" cy="11" r="2.1" fill="#f6f5f2"/>
+  <path d="M6.5 22.5h19" stroke="#f6f5f2" stroke-width="1.8" stroke-linecap="round"/>
+</svg>

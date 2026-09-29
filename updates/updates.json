@@ -1,0 +1,13 @@
+{
+  "title": "Russia in 10 years",
+  "tagline": "A rolling ten-year forecast of Russia, revised on weekdays by a chair and three philosophers.",
+  "updates": [
+    {
+      "date": "2026-09-29",
+      "horizon": "2036-09-29",
+      "headline": "Opening vision",
+      "summary": "Opening baseline for Russia in 2036, published before the first weekday news cycle.",
+      "path": "updates/2026-09-29/"
+    }
+  ]
+}
