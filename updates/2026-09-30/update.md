@@ -1,10 +1,18 @@
 ---
 date: 2026-09-30
 horizon: 2036-09-30
-headline: "Militarised budget deepened"
-summary: "A record 2027 defence budget and another force-ceiling rise strengthen the long-war path; U.S. sanctions law hardens while early signals of pre-peace easing leave enforcement newly split."
-source: updates/2026-09-30/update.md
+headline: Militarised budget deepened
+summary: A record 2027 defence budget and another force-ceiling rise strengthen the long-war path; U.S. sanctions law hardens while early signals of pre-peace easing leave enforcement newly split.
 ---
+
+## What changed today
+
+- **Strengthened.** The picture in which the Russian Federation of 2036 is still living with a long war — and with a state budget built around it — is firmer. Government documents reported on 28 September plan defence spending of 17.1 trillion roubles in 2027, about 27% above the previous 2027 plan and the highest figure since the full-scale invasion. Three-year defence totals near 50 trillion roubles, a wider 2026 deficit, higher net borrowing, and a draw on the National Wealth Fund all point the same way. A further presidential decree raising authorised military personnel (to about 2.44 million on paper, including roughly 1.55 million military) fits a manpower policy for attrition, not for a near settlement.
+- **Revised.** Easy fiscal room is harder to defend as a background assumption. Officials themselves treat debt above 20% of GDP as a caution line; the documents push 2027 debt above that mark and foreshadow further tax measures, including a windfall levy on metals and mining. Oil and gas revenue estimates for 2026 have been cut. The economy section still rejects sovereign default as the central case. It now carries a sharper warning that war costs and weaker hydrocarbon revenue compete inside the same budget for years, not months.
+- **Left uncertain — and newly split.** U.S. law now carries stronger tools (the September statute that codifies Russia sanctions and authorises steep tariffs, including on top buyers of Russian energy). Near-term U.S. practice may move the other way: reporting on 29 September describes early-stage White House interest in easing some sanctions for political-prisoner releases without waiting for the war to end, while the new authorities remain largely unenforced. Kyiv has signalled it would try to block pre-peace relief. The horizon claim is dual: legal capacity to tighten versus political will to use or waive. Secondary tariffs on China and India stay neither default nor impossible.
+- **Not moved.** Succession at the centre remains open. No weekday development named an heir or broke the elite-management assumption. Occupation of all of Ukraine, and a collapse that removes Russia as a regional military power, stay outside the central case.
+
+Front-line increments and another night of drones do not, by themselves, rewrite a ten-year text. The budget and force decisions do, because they lock resources and demography onto a war footing deeper into the late 2020s.
 
 ## Vision for 2036
 
@@ -47,3 +55,20 @@ Russia in 2036 is a nuclear power, a large commodity exporter, and a regional mi
 ### How to read this revision
 
 Each claim can be kept, narrowed, or dropped by a later weekday edition.
+
+## Philosophers
+
+- **Samuel von Pufendorf.** Sovereignty is a duty before it is a licence. A state that plans record military outlays while narrowing what the public may know about the energy system that pays for them is asserting power, not accounting for duty. Sovereignty, on his terms, still asks whether the people subject to the state — and those under its attack — are safer for the bargain. A heavier army budget can be prudence or predation; the difference is whether war remains answerable to law and covenant, or becomes its own justification.
+
+- **Karl Popper.** Do not upgrade a budget line into a law of history. The 2027 defence plan is strong evidence for a militarised path through the late 2020s. It is not proof that 2036 must look the same. Prefer claims that a ceasefire, a fiscal break, or a succession crisis could dent. Piecemeal correction beats any story that Russia has already chosen its decade.
+
+- **Socrates.** If the war is still “on the table” for talks and the budget still rises as if talks will fail, which claim do you actually believe? What would falsify the long-war reading within a year — a verified settlement, a mobilisation shock, or a Chinese price squeeze — and who is watching for it? If you cannot answer, the confidence in today’s strengthening is borrowed, not earned.
+
+## Falsifiers
+
+- A verified settlement or durable ceasefire that lets defence spending fall back toward pre-war shares of the budget.
+- A competitive transfer of power, or a loss of central authority across several regions, that the assumption of elite management cannot absorb.
+- A broad, durable lifting of Western sanctions and a return of advanced-technology trade, or a secondary-sanctions shock that cuts the main Asian energy outlets.
+- Evidence that the working-age population has stabilised, or that war deaths and emigration have been far larger than this baseline allows.
+- An energy system whose fiscal role has been replaced, or a price-and-strike combination that the budget cannot finance without a political crisis.
+- A binding Chinese security guarantee, or a Chinese decision to curtail the economic relationship enough to remove it as the main external pillar.
