@@ -4,15 +4,15 @@ A weekday record of how a ten-year forecast of the Russian Federation changes. T
 
 The thing to read is the history of the revisions. Each edition leads with what moved that day. The full vision is the living text those notes revise. It is kept, and it is not the front page.
 
-A chair gathers Russian Federation–related news. Three philosopher personas comment. Samuel von Pufendorf speaks to sovereignty, natural law, and the duties of states. Karl Popper speaks to the open society, piecemeal reform, and the refusal to treat history as a script. Socrates asks the questions that unsettle a confident forecast.
+A chair gathers Russian Federation–related news. Three philosopher personas comment. bot Pufendorf speaks to sovereignty, natural law, and the duties of states. bot Popper speaks to the open society, piecemeal reform, and the refusal to treat history as a script. bot Socrates asks the questions that unsettle a confident forecast.
 
 The site is static. Relative links are used throughout, so the same files work on GitHub Pages at `/russia-in-10-years/` and at a domain root.
 
 ## Read
 
-- `index.html` — what changed today, then a short preview of the vision, then the revision timeline
+- `index.html` — what changed today, then the vision folded, then Society in ten points in full, then the revision timeline
 - `archive/index.html` — every revision, newest first, listed by the change
-- `updates/YYYY-MM-DD/index.html` — that day's change, with the full vision folded underneath
+- `updates/YYYY-MM-DD/index.html` — that day's change, with the full vision folded underneath and Society in ten points last
 - `updates/updates.json` — the same list, for anything that wants data rather than HTML
 - `vision/current.md` — the latest full vision, regenerated from the newest update
 
@@ -35,8 +35,9 @@ The body uses these sections, in order:
 
 1. `## What changed today` — the primary note. Open with a changelog of bullets (what was revised, strengthened, weakened, or newly uncertain), then a short narrative. Compare with the previous vision.
 2. `## Vision for YYYY` — the full living forecast after today's revisions, about 600 to 1200 words, naming the horizon year
-3. `## Philosophers` — brief attributed notes from Pufendorf, Popper, and Socrates
+3. `## Philosophers` — brief attributed notes from bot Pufendorf, bot Popper, and bot Socrates
 4. `## Falsifiers` — optional; what evidence would force this vision to be revised
+5. `## Society in ten points` — required last section, after Philosophers and after Falsifiers when that section is present. The ten labels stay fixed. Carry the same lines forward; rewrite a line only when the vision itself has a material social change, not when the day's news only deepens an already-named path.
 
 Rebuild from the repository root, or from anywhere:
 

@@ -21,11 +21,32 @@ UPDATES_DIR = ROOT / "updates"
 
 SITE_TITLE = "Russia in 10 years"
 TAGLINE = (
-    "A rolling ten-year forecast of the Russian Federation, revised on weekdays by a chair and three philosophers."
+    "A rolling ten-year forecast of the Russian Federation, revised on weekdays by a chair, bot Pufendorf, bot Popper, and bot Socrates."
 )
 VISION_WORDS_MIN = 600
 VISION_WORDS_MAX = 1200
-PHILOSOPHERS = ("Pufendorf", "Popper", "Socrates")
+PHILOSOPHERS = ("bot Pufendorf", "bot Popper", "bot Socrates")
+FOOTER_COMMENT = (
+    "bot Pufendorf, bot Popper, and bot Socrates comment. A forecast, not a promise."
+)
+SOCIETY_TITLE = "Society in ten points"
+SOCIETY_LABELS = (
+    "Form of government",
+    "Social trust",
+    "Type of economy",
+    "Freedom of speech and press",
+    "Rule of law",
+    "Political competition",
+    "Civil society",
+    "Demography and social fabric",
+    "Information and surveillance",
+    "Security apparatus in society",
+)
+FORBIDDEN_NAME_PHRASES = (
+    "Samuel von Pufendorf",
+    "Karl Popper",
+    "AI bot",
+)
 
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 LINK_RE = re.compile(r"\[([^\]]+)\]\(([^)\s]+)\)")
@@ -182,6 +203,27 @@ def parse_update(folder: Path) -> Update:
     return update
 
 
+def society_labels(body: str) -> list[str]:
+    labels: list[str] = []
+    for item in re.findall(r"(?m)^\s*\d+\.\s+(.*\S)\s*$", body):
+        match = re.match(r"\*\*(.+?)\*\*", item)
+        labels.append(match.group(1).strip() if match else item.strip())
+    return labels
+
+
+def naming_errors(text: str, where: str) -> list[str]:
+    errors: list[str] = []
+    lowered = text.lower()
+    for phrase in FORBIDDEN_NAME_PHRASES:
+        if phrase.lower() in lowered:
+            errors.append(
+                f"{where}: use bot Pufendorf, bot Popper, and bot Socrates, not {phrase!r}"
+            )
+    if re.search(r"\bWriter\b", text):
+        errors.append(f"{where}: do not name the chair; keep a chair anonymous")
+    return errors
+
+
 def validate_update(update: Update, path: Path) -> None:
     errors: list[str] = []
     changed = update.section("what changed today")
@@ -209,8 +251,33 @@ def validate_update(update: Update, path: Path) -> None:
         errors.append(f"{path}: missing section 'Philosophers'")
     else:
         for name in PHILOSOPHERS:
-            if name not in philosophers.body_md:
-                errors.append(f"{path}: philosophers section does not mention {name}")
+            if not re.search(
+                rf"(?m)^[-*]\s+\*\*{re.escape(name)}\.\*\*", philosophers.body_md
+            ):
+                errors.append(
+                    f"{path}: Philosophers attribution must use **{name}.**"
+                )
+        for short in ("Pufendorf", "Popper", "Socrates"):
+            if re.search(
+                rf"(?m)^[-*]\s+\*\*{short}\.\*\*", philosophers.body_md
+            ):
+                errors.append(
+                    f"{path}: Philosophers attribution must be **bot {short}.**, not **{short}.**"
+                )
+    society = update.section(SOCIETY_TITLE.lower())
+    if society is None or society.key != SOCIETY_TITLE.lower():
+        errors.append(f"{path}: missing section '{SOCIETY_TITLE}'")
+    else:
+        labels = society_labels(society.body_md)
+        if labels != list(SOCIETY_LABELS):
+            found = "; ".join(labels) if labels else "(none)"
+            errors.append(
+                f"{path}: '{SOCIETY_TITLE}' must contain exactly these 10 bold labels "
+                f"in order ({'; '.join(SOCIETY_LABELS)}); found {len(labels)}: {found}"
+            )
+    errors.extend(naming_errors(update.body_md, str(path)))
+    errors.extend(naming_errors(update.headline, f"{path}: headline"))
+    errors.extend(naming_errors(update.summary, f"{path}: summary"))
     if changed is not None and not re.search(r"(?m)^[-*] ", changed.body_md):
         print(
             f"warning: {path}: 'What changed today' has no bullet list of deltas",
@@ -218,7 +285,12 @@ def validate_update(update: Update, path: Path) -> None:
         )
 
     order = [section.key for section in update.sections]
-    required_prefixes = ("what changed today", "vision for", "philosophers")
+    required_prefixes = (
+        "what changed today",
+        "vision for",
+        "philosophers",
+        SOCIETY_TITLE.lower(),
+    )
     positions = []
     for prefix in required_prefixes:
         found = next((i for i, key in enumerate(order) if key.startswith(prefix)), None)
@@ -227,11 +299,14 @@ def validate_update(update: Update, path: Path) -> None:
     if positions != sorted(positions):
         errors.append(
             f"{path}: sections must run What changed today, Vision, Philosophers, "
-            "then optional Falsifiers"
+            "optional Falsifiers, then Society in ten points"
         )
     falsifiers_at = next((i for i, key in enumerate(order) if key.startswith("falsifiers")), None)
     philosophers_at = next(
         (i for i, key in enumerate(order) if key.startswith("philosophers")), None
+    )
+    society_at = next(
+        (i for i, key in enumerate(order) if key == SOCIETY_TITLE.lower()), None
     )
     if (
         falsifiers_at is not None
@@ -239,6 +314,16 @@ def validate_update(update: Update, path: Path) -> None:
         and falsifiers_at < philosophers_at
     ):
         errors.append(f"{path}: Falsifiers should follow Philosophers")
+    if (
+        society_at is not None
+        and philosophers_at is not None
+        and society_at < philosophers_at
+    ):
+        errors.append(f"{path}: Society in ten points must follow Philosophers")
+    if falsifiers_at is not None and society_at is not None and society_at < falsifiers_at:
+        errors.append(f"{path}: Society in ten points must follow Falsifiers")
+    if society_at is not None and society_at != len(order) - 1:
+        errors.append(f"{path}: Society in ten points must be the last section")
     if errors:
         fail(errors)
     if update.published.weekday() >= 5:
@@ -451,7 +536,7 @@ def page(title: str, description: str, depth: int, main: str) -> str:
     </main>
     <footer>
       <p>A weekday record of how the ten-year forecast of the Russian Federation moves. The horizon is the publication date plus ten years.</p>
-      <p>Pufendorf, Popper, and Socrates comment. A forecast, not a promise.</p>
+      <p>{html.escape(FOOTER_COMMENT)}</p>
     </footer>
   </div>
 </body>
@@ -477,10 +562,22 @@ def revision_heading(update: Update) -> str:
     )
 
 
+def render_society(section: Section) -> str:
+    return (
+        '<section class="commentary society-points" aria-labelledby="society-in-ten-points">\n'
+        f'  <h2 id="society-in-ten-points">{html.escape(SOCIETY_TITLE)}</h2>\n'
+        '  <div class="body">\n'
+        f"{indent(md_to_html(section.body_md), 4)}\n"
+        "  </div>\n"
+        "</section>"
+    )
+
+
 def render_index(update: Update) -> str:
     changed = update.section("what changed today")
     vision = update.section("vision for")
-    assert changed is not None and vision is not None
+    society = update.section(SOCIETY_TITLE.lower())
+    assert changed is not None and vision is not None and society is not None
     href = update.slug_path
     main = f"""
 <article>
@@ -498,6 +595,7 @@ def render_index(update: Update) -> str:
 {indent(md_to_html(vision.body_md), 6)}
     </div>
   </details>
+{indent(render_society(society), 2)}
   <p class="more"><a href="{href}#philosophers">Philosophers and falsifiers</a></p>
   <p class="more"><a href="archive/">Revision timeline</a></p>
 </article>
@@ -539,8 +637,11 @@ def render_update(update: Update, updates: list[Update]) -> str:
     ]
     later_html = []
     for section in later_sections:
+        classes = "commentary"
+        if section.key == SOCIETY_TITLE.lower():
+            classes = "commentary society-points"
         later_html.append(
-            f'<section class="commentary">\n'
+            f'<section class="{classes}">\n'
             f'  <h2 id="{slugify(section.title)}">{html.escape(section.title)}</h2>\n'
             f'  <div class="body">\n'
             f'{indent(md_to_html(section.body_md), 4)}\n'
@@ -834,7 +935,8 @@ time {
 
 .changed,
 .forecast,
-.commentary {
+.commentary,
+.society-points {
   margin: 0 0 2.5rem;
 }
 
@@ -845,7 +947,8 @@ time {
 
 .changed .body,
 .forecast .body,
-.commentary .body {
+.commentary .body,
+.society-points .body {
   margin-top: 0.85rem;
 }
 
@@ -933,6 +1036,10 @@ time {
 
 .body li::marker {
   color: var(--accent);
+}
+
+.society-points .body li {
+  margin: 0.7rem 0;
 }
 
 .body blockquote {
@@ -1132,15 +1239,15 @@ A weekday record of how a ten-year forecast of the Russian Federation changes. T
 
 The thing to read is the history of the revisions. Each edition leads with what moved that day. The full vision is the living text those notes revise. It is kept, and it is not the front page.
 
-A chair gathers Russian Federation–related news. Three philosopher personas comment. Samuel von Pufendorf speaks to sovereignty, natural law, and the duties of states. Karl Popper speaks to the open society, piecemeal reform, and the refusal to treat history as a script. Socrates asks the questions that unsettle a confident forecast.
+A chair gathers Russian Federation–related news. Three philosopher personas comment. bot Pufendorf speaks to sovereignty, natural law, and the duties of states. bot Popper speaks to the open society, piecemeal reform, and the refusal to treat history as a script. bot Socrates asks the questions that unsettle a confident forecast.
 
 The site is static. Relative links are used throughout, so the same files work on GitHub Pages at `/russia-in-10-years/` and at a domain root.
 
 ## Read
 
-- `index.html` — what changed today, then a short preview of the vision, then the revision timeline
+- `index.html` — what changed today, then the vision folded, then Society in ten points in full, then the revision timeline
 - `archive/index.html` — every revision, newest first, listed by the change
-- `updates/YYYY-MM-DD/index.html` — that day's change, with the full vision folded underneath
+- `updates/YYYY-MM-DD/index.html` — that day's change, with the full vision folded underneath and Society in ten points last
 - `updates/updates.json` — the same list, for anything that wants data rather than HTML
 - `vision/current.md` — the latest full vision, regenerated from the newest update
 
@@ -1163,8 +1270,9 @@ The body uses these sections, in order:
 
 1. `## What changed today` — the primary note. Open with a changelog of bullets (what was revised, strengthened, weakened, or newly uncertain), then a short narrative. Compare with the previous vision.
 2. `## Vision for YYYY` — the full living forecast after today's revisions, about 600 to 1200 words, naming the horizon year
-3. `## Philosophers` — brief attributed notes from Pufendorf, Popper, and Socrates
+3. `## Philosophers` — brief attributed notes from bot Pufendorf, bot Popper, and bot Socrates
 4. `## Falsifiers` — optional; what evidence would force this vision to be revised
+5. `## Society in ten points` — required last section, after Philosophers and after Falsifiers when that section is present. The ten labels stay fixed. Carry the same lines forward; rewrite a line only when the vision itself has a material social change, not when the day's news only deepens an already-named path.
 
 Rebuild from the repository root, or from anywhere:
 
@@ -1241,6 +1349,7 @@ def smoke(updates: list[Update]) -> None:
                 errors.append(
                     f"{html_path.relative_to(ROOT)} links to {href}, which is not a file"
                 )
+        errors.extend(naming_errors(text, str(html_path.relative_to(ROOT))))
 
     index = (ROOT / "index.html").read_text(encoding="utf-8") if (ROOT / "index.html").is_file() else ""
     archive = (
@@ -1286,13 +1395,62 @@ def smoke(updates: list[Update]) -> None:
             errors.append("updates.json is not ordered newest first")
         if data["updates"][0]["path"] != latest.slug_path:
             errors.append("updates.json path does not match the latest update")
+        if "Society in ten points" not in index:
+            errors.append("index is missing Society in ten points")
+        if "Society in ten points" not in update_html:
+            errors.append("latest update is missing Society in ten points")
+        for label in SOCIETY_LABELS:
+            strong = f"<strong>{html.escape(label)}</strong>"
+            if strong not in index:
+                errors.append(f"index is missing bold society label {label}")
+            if strong not in update_html:
+                errors.append(f"latest update is missing bold society label {label}")
+        details_end = index.find("</details>")
+        society_at = index.find("Society in ten points")
+        philosophers_link = index.find("#philosophers")
+        if not (0 <= details_end < society_at < philosophers_link):
+            errors.append(
+                "index should show Society in ten points after the vision fold "
+                "and before the philosophers link"
+            )
+        for name in PHILOSOPHERS:
+            if name not in index:
+                errors.append(f"index does not name {name}")
+            if f"<strong>{name}.</strong>" not in update_html:
+                errors.append(f"latest update does not attribute {name}")
+        readme = (
+            (ROOT / "README.md").read_text(encoding="utf-8")
+            if (ROOT / "README.md").is_file()
+            else ""
+        )
+        errors.extend(naming_errors(readme, "README.md"))
+        for name in PHILOSOPHERS:
+            if name not in readme:
+                errors.append(f"README does not name {name}")
 
+    if errors:
+        fail(errors)
+
+
+def validate_chrome() -> None:
+    errors: list[str] = []
+    blobs = {
+        "tagline": TAGLINE,
+        "footer": FOOTER_COMMENT,
+        "README": README,
+    }
+    for label, text in blobs.items():
+        for name in PHILOSOPHERS:
+            if name not in text:
+                errors.append(f"{label} must use the bot name {name}")
+        errors.extend(naming_errors(text, label))
     if errors:
         fail(errors)
 
 
 def main() -> None:
     check_calendar()
+    validate_chrome()
     updates = load_updates()
     clean_stale_pages(updates)
     latest = updates[0]
