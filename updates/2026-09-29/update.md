@@ -57,11 +57,11 @@ Each claim can be kept, narrowed, or dropped by a later weekday edition. If the 
 
 ## Philosophers
 
-- **Samuel von Pufendorf.** Sovereignty is a duty before it is a licence. A state is judged by whether it protects the people subject to it, keeps faith with covenants, and refuses to treat war as its own justification. Natural law, in his sense, still limits raison d'état: power that cannot account for the safety and rights of those it governs, at home and in the lands it attacks, is not order. Succession, sanctions, and the war should be read against those duties, not only against the survival of the ruling group.
+- **bot Pufendorf.** Sovereignty is a duty before it is a licence. A state is judged by whether it protects the people subject to it, keeps faith with covenants, and refuses to treat war as its own justification. Natural law, in his sense, still limits raison d'état: power that cannot account for the safety and rights of those it governs, at home and in the lands it attacks, is not order. Succession, sanctions, and the war should be read against those duties, not only against the survival of the ruling group.
 
-- **Karl Popper.** An open society is one that can remove a bad policy or a bad government without violence. A forecast about a closed political system is useful only while it stays open to refutation. Do not treat 2036 as destiny, and do not treat today's baseline as a law of history. Institutions that cannot be criticised from inside are brittle in ways their ceremonies hide. Prefer claims that next week's news is allowed to dent. Piecemeal correction is the method. A story about where Russia must arrive is not.
+- **bot Popper.** An open society is one that can remove a bad policy or a bad government without violence. A forecast about a closed political system is useful only while it stays open to refutation. Do not treat 2036 as destiny, and do not treat today's baseline as a law of history. Institutions that cannot be criticised from inside are brittle in ways their ceremonies hide. Prefer claims that next week's news is allowed to dent. Piecemeal correction is the method. A story about where Russia must arrive is not.
 
-- **Socrates.** What would you have to know before you were entitled to be confident about 2036, and do you know it? Whose comfort does this picture protect: the reader who wants stability, or the reader who wants collapse? If the state is called sovereign, sovereign over whom, and accountable to whom? If a sentence cannot survive those questions, it does not belong in the vision.
+- **bot Socrates.** What would you have to know before you were entitled to be confident about 2036, and do you know it? Whose comfort does this picture protect: the reader who wants stability, or the reader who wants collapse? If the state is called sovereign, sovereign over whom, and accountable to whom? If a sentence cannot survive those questions, it does not belong in the vision.
 
 ## Falsifiers
 
@@ -71,3 +71,18 @@ Each claim can be kept, narrowed, or dropped by a later weekday edition. If the 
 - Evidence that the working-age population has stabilised, or that war deaths and emigration have been far larger than this baseline allows.
 - An energy system whose fiscal role has been replaced, or a long price collapse that the budget cannot finance without a political crisis.
 - A binding Chinese security guarantee, or a Chinese decision to curtail the economic relationship enough to remove it as the main external pillar.
+
+## Society in ten points
+
+A compact picture of Russian Federation society at the horizon. The ten labels stay fixed. Rewrite a line only when the vision itself has a material social change — not when the day’s news only deepens an already-named path.
+
+1. **Form of government** — Highly centralised presidential–security state with managed elections; neither competitive democracy nor a formal one-party system.
+2. **Social trust** — Low generalised trust: many accommodate because exit is costly and chaos is the advertised alternative, not because institutions earn confidence.
+3. **Type of economy** — War-adapted commodity and state-led economy; oil, gas, metals, agriculture and military industry carry the budget; civilian technology leans on imports, copies and non-Western partners.
+4. **Freedom of speech and press** — Narrow and managed; independent journalism and open dissent are repressed; the official narrative dominates public channels.
+5. **Rule of law** — Instrumental: courts, governors and the legislature serve the centre more often than they check it.
+6. **Political competition** — Organised opposition stays repressed; succession and elite bargains settle before voters see them.
+7. **Civil society** — Independent association is thin and risky outside state-approved forms.
+8. **Demography and social fabric** — Smaller population than 2021 from low births, war deaths and emigration; fewer young adults tighten labour; Moscow and a few cities keep more skilled work than regions that supply soldiers and raw materials.
+9. **Information and surveillance** — Strong state information control and surveillance, including military and monitoring uses of technology.
+10. **Security apparatus in society** — Security services and a large armed force sit at the centre of political power; a long-war footing deepens that role through the late 2020s.

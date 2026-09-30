@@ -172,7 +172,8 @@ time {
 
 .changed,
 .forecast,
-.commentary {
+.commentary,
+.society-points {
   margin: 0 0 2.5rem;
 }
 
@@ -183,7 +184,8 @@ time {
 
 .changed .body,
 .forecast .body,
-.commentary .body {
+.commentary .body,
+.society-points .body {
   margin-top: 0.85rem;
 }
 
@@ -271,6 +273,10 @@ time {
 
 .body li::marker {
   color: var(--accent);
+}
+
+.society-points .body li {
+  margin: 0.7rem 0;
 }
 
 .body blockquote {
