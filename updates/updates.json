@@ -3,6 +3,13 @@
   "tagline": "A rolling ten-year forecast of the Russian Federation, revised on weekdays by a chair and three philosophers.",
   "updates": [
     {
+      "date": "2026-09-30",
+      "horizon": "2036-09-30",
+      "headline": "Militarised budget deepened",
+      "summary": "A record 2027 defence budget and another force-ceiling rise strengthen the long-war path; U.S. sanctions law hardens while early signals of pre-peace easing leave enforcement newly split.",
+      "path": "updates/2026-09-30/"
+    },
+    {
       "date": "2026-09-29",
       "horizon": "2036-09-29",
       "headline": "Opening vision",
