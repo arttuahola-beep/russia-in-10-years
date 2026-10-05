@@ -10,6 +10,8 @@
   --line: #e2e0da;
   --selection: #d5e4f5;
   --code-bg: #e5eef6;
+  --banner-bg: #9a3412;
+  --banner-fg: #fff7ed;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -24,6 +26,8 @@
     --line: #2c333c;
     --selection: #1f5c99;
     --code-bg: #1c2c3d;
+    --banner-bg: #fdba74;
+    --banner-fg: #1c1008;
   }
 }
 
@@ -161,6 +165,38 @@ time {
   font-weight: 600;
   letter-spacing: 0.01em;
   line-height: 1.4;
+}
+
+.pill-revised {
+  background: var(--banner-bg);
+  color: var(--banner-fg);
+  letter-spacing: 0.06em;
+}
+
+.vision-banner {
+  margin: 0 0 1.35rem;
+  padding: 0.95rem 1rem;
+  border: 3px solid var(--banner-bg);
+  background: var(--banner-bg);
+  color: var(--banner-fg);
+  font-size: clamp(1.45rem, 4.8vw, 1.9rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.vision-revised {
+  margin: 0 0 1.15rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.vision-revised time {
+  color: var(--text);
+  font-size: 1.05rem;
+  font-weight: 700;
 }
 
 .dek {
@@ -359,6 +395,12 @@ strong {
 .item-name {
   color: var(--muted);
   font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.item-revised {
+  color: var(--muted);
+  font-size: 0.92rem;
   line-height: 1.4;
 }
 

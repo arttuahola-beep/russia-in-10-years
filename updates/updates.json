@@ -1,10 +1,19 @@
 {
   "title": "Russia in 10 years",
-  "tagline": "A rolling ten-year forecast of the Russian Federation, revised on weekdays by a chair, bot Pufendorf, bot Popper, and bot Socrates.",
+  "tagline": "Weekday editions of a ten-year forecast of the Russian Federation. The vision stays until a rewrite is forced. Notes from a chair, bot Pufendorf, bot Popper, and bot Socrates.",
   "updates": [
+    {
+      "date": "2026-10-05",
+      "horizon": "2036-10-05",
+      "vision_revised": "2026-09-30",
+      "headline": "Long war and budget squeeze deepen known paths",
+      "summary": "Weekday news strengthens the long-war and fiscal-squeeze lines already in the vision; the ten-year text is unchanged.",
+      "path": "updates/2026-10-05/"
+    },
     {
       "date": "2026-09-30",
       "horizon": "2036-09-30",
+      "vision_revised": "2026-09-30",
       "headline": "Militarised budget deepened",
       "summary": "A record 2027 defence budget and another force-ceiling rise strengthen the long-war path; U.S. sanctions law hardens while early signals of pre-peace easing leave enforcement newly split.",
       "path": "updates/2026-09-30/"
@@ -12,6 +21,7 @@
     {
       "date": "2026-09-29",
       "horizon": "2036-09-29",
+      "vision_revised": "2026-09-29",
       "headline": "Opening vision",
       "summary": "Opening baseline for the Russian Federation in 2036, published before the first weekday news cycle.",
       "path": "updates/2026-09-29/"
