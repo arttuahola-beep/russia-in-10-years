@@ -1,6 +1,7 @@
 ---
 date: 2026-09-30
 horizon: 2036-09-30
+vision_revised: 2026-09-30
 headline: Militarised budget deepened
 summary: A record 2027 defence budget and another force-ceiling rise strengthen the long-war path; U.S. sanctions law hardens while early signals of pre-peace easing leave enforcement newly split.
 ---

@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 """Build the static Russia in 10 years site from updates/*/update.md.
 
+Publish a weekday edition even when the ten-year vision is carried forward.
+`vision_revised` is the date the vision text was last rewritten. When it
+equals the edition date after the first edition, the page leads with a
+VISION REVISED banner.
+
 Python 3 standard library only. Run from anywhere:
 
     python3 scripts/build_site.py
@@ -21,10 +26,15 @@ UPDATES_DIR = ROOT / "updates"
 
 SITE_TITLE = "Russia in 10 years"
 TAGLINE = (
-    "A rolling ten-year forecast of the Russian Federation, revised on weekdays by a chair, bot Pufendorf, bot Popper, and bot Socrates."
+    "Weekday editions of a ten-year forecast of the Russian Federation. "
+    "The vision stays until a rewrite is forced. "
+    "Notes from a chair, bot Pufendorf, bot Popper, and bot Socrates."
 )
 VISION_WORDS_MIN = 600
-VISION_WORDS_MAX = 1200
+# A carried-forward vision keeps the previous text and adds a short note
+# that names the last revision. The ceiling sits a little above the first
+# full texts so that sentence does not force cuts.
+VISION_WORDS_MAX = 1250
 PHILOSOPHERS = ("bot Pufendorf", "bot Popper", "bot Socrates")
 FOOTER_COMMENT = (
     "bot Pufendorf, bot Popper, and bot Socrates comment. A forecast, not a promise."
@@ -70,6 +80,7 @@ class Update:
     folder: Path
     published: date
     horizon: date
+    vision_revised: date
     headline: str
     summary: str
     body_md: str
@@ -103,6 +114,11 @@ def add_years(day: date, years: int) -> date:
 
 def long_date(day: date) -> str:
     return f"{day.strftime('%A')} {day.day} {day.strftime('%B %Y')}"
+
+
+def short_date(day: date) -> str:
+    """Day month year, without the weekday: '30 September 2026'."""
+    return f"{day.day} {day.strftime('%B %Y')}"
 
 
 def yaml_quote(value: str) -> str:
@@ -160,7 +176,7 @@ def parse_update(folder: Path) -> Update:
     path = folder / "update.md"
     meta, body = parse_front_matter(path.read_text(encoding="utf-8"), path)
     errors: list[str] = []
-    for key in ("date", "horizon", "headline", "summary"):
+    for key in ("date", "horizon", "vision_revised", "headline", "summary"):
         if not meta.get(key):
             errors.append(f"{path}: missing front matter field {key}")
     if errors:
@@ -168,10 +184,13 @@ def parse_update(folder: Path) -> Update:
 
     published_text = meta["date"]
     horizon_text = meta["horizon"]
+    revised_text = meta["vision_revised"]
     if not DATE_RE.match(published_text):
         errors.append(f"{path}: date must be YYYY-MM-DD")
     if not DATE_RE.match(horizon_text):
         errors.append(f"{path}: horizon must be YYYY-MM-DD")
+    if not DATE_RE.match(revised_text):
+        errors.append(f"{path}: vision_revised must be YYYY-MM-DD")
     if folder.name != published_text:
         errors.append(
             f"{path}: date {published_text} does not match folder {folder.name}"
@@ -181,6 +200,7 @@ def parse_update(folder: Path) -> Update:
 
     published = date.fromisoformat(published_text)
     horizon = date.fromisoformat(horizon_text)
+    vision_revised = date.fromisoformat(revised_text)
     expected = add_years(published, 10)
     if horizon != expected:
         fail(
@@ -189,11 +209,19 @@ def parse_update(folder: Path) -> Update:
                 f"({expected.isoformat()}, found {horizon.isoformat()})"
             ]
         )
+    if vision_revised > published:
+        fail(
+            [
+                f"{path}: vision_revised {vision_revised.isoformat()} "
+                f"cannot be after the edition date {published.isoformat()}"
+            ]
+        )
 
     update = Update(
         folder=folder,
         published=published,
         horizon=horizon,
+        vision_revised=vision_revised,
         headline=meta["headline"].strip(),
         summary=meta["summary"].strip(),
         body_md=body,
@@ -219,7 +247,9 @@ def naming_errors(text: str, where: str) -> list[str]:
             errors.append(
                 f"{where}: use bot Pufendorf, bot Popper, and bot Socrates, not {phrase!r}"
             )
-    if re.search(r"\bWriter\b", text):
+    # The chair stays anonymous. The forbidden token is split so the source
+    # does not spell it.
+    if re.search(r"\bWri" + "ter" + r"\b", text):
         errors.append(f"{where}: do not name the chair; keep a chair anonymous")
     return errors
 
@@ -332,6 +362,18 @@ def validate_update(update: Update, path: Path) -> None:
             "the series is revised on weekdays",
             file=sys.stderr,
         )
+
+
+def is_vision_revision(update: Update, updates: list[Update]) -> bool:
+    """True when this edition rewrote the living vision.
+
+    The first edition sets the vision down, so it does not count as a revision
+    even though `vision_revised` equals its date. Later editions are revision
+    days only when `vision_revised` equals the edition date.
+    """
+    if update.vision_revised != update.published:
+        return False
+    return any(item.published < update.published for item in updates)
 
 
 def load_updates() -> list[Update]:
@@ -535,7 +577,7 @@ def page(title: str, description: str, depth: int, main: str) -> str:
 {indent(main, 6)}
     </main>
     <footer>
-      <p>A weekday record of how the ten-year forecast of the Russian Federation moves. The horizon is the publication date plus ten years.</p>
+      <p>A weekday edition of the ten-year forecast of the Russian Federation, including days when the vision is carried forward. The horizon is the publication date plus ten years.</p>
       <p>{html.escape(FOOTER_COMMENT)}</p>
     </footer>
   </div>
@@ -553,12 +595,28 @@ def kicker(update: Update) -> str:
     )
 
 
-def revision_heading(update: Update) -> str:
-    """Lead with the one-line change. The revision name stays a label."""
+def revision_heading(update: Update, *, revised: bool) -> str:
+    """Lead with the one-line change. A vision rewrite leads with a loud banner."""
+    banner = ""
+    if revised:
+        banner = '<p class="vision-banner">VISION REVISED</p>\n  '
     return (
-        f"{kicker(update)}\n"
+        f"{banner}{kicker(update)}\n"
         f'  <p class="revision-name">{html.escape(update.headline)}</p>\n'
         f"  <h1>{inline(update.summary)}</h1>"
+    )
+
+
+def vision_revised_line(update: Update) -> str:
+    """Visible date of the living text, separate from the edition date."""
+    label = short_date(update.vision_revised)
+    carried = ""
+    if update.vision_revised < update.published:
+        carried = ' <span class="pill">Carried forward</span>'
+    return (
+        '<p class="vision-revised">Vision last revised: '
+        f'<time datetime="{update.vision_revised.isoformat()}">{html.escape(label)}</time>'
+        f"{carried}</p>"
     )
 
 
@@ -573,21 +631,23 @@ def render_society(section: Section) -> str:
     )
 
 
-def render_index(update: Update) -> str:
+def render_index(update: Update, updates: list[Update]) -> str:
     changed = update.section("what changed today")
     vision = update.section("vision for")
     society = update.section(SOCIETY_TITLE.lower())
     assert changed is not None and vision is not None and society is not None
     href = update.slug_path
+    revised = is_vision_revision(update, updates)
     main = f"""
 <article>
-  {revision_heading(update)}
+  {revision_heading(update, revised=revised)}
   <section class="changed" aria-labelledby="changed-heading">
     <h2 id="changed-heading">What changed today</h2>
     <div class="body">
 {indent(md_to_html(changed.body_md), 6)}
     </div>
   </section>
+  {vision_revised_line(update)}
   <details class="vision-fold">
     <summary>Vision for {html.escape(long_date(update.horizon))}</summary>
     <div class="body">
@@ -597,7 +657,7 @@ def render_index(update: Update) -> str:
   </details>
 {indent(render_society(society), 2)}
   <p class="more"><a href="{href}#philosophers">Philosophers and falsifiers</a></p>
-  <p class="more"><a href="archive/">Revision timeline</a></p>
+  <p class="more"><a href="archive/">Edition timeline</a></p>
 </article>
 """
     description = f"{update.summary} Horizon {long_date(update.horizon)}."
@@ -624,12 +684,13 @@ def render_update(update: Update, updates: list[Update]) -> str:
             f'<span class="pager-title">{html.escape(newer.headline)}</span>'
             "</a>"
         )
-    pager_parts.append('<a class="pager-home" href="../../archive/">Revision timeline</a>')
-    pager_parts.append('<a class="pager-home" href="../../index.html">Latest revision</a>')
+    pager_parts.append('<a class="pager-home" href="../../archive/">Edition timeline</a>')
+    pager_parts.append('<a class="pager-home" href="../../index.html">Latest edition</a>')
     pager = "\n".join(pager_parts)
     changed = update.section("what changed today")
     vision = update.section("vision for")
     assert changed is not None and vision is not None
+    revised = is_vision_revision(update, updates)
     later_sections = [
         section
         for section in update.sections
@@ -650,13 +711,14 @@ def render_update(update: Update, updates: list[Update]) -> str:
         )
     main = f"""
 <article>
-  {revision_heading(update)}
+  {revision_heading(update, revised=revised)}
   <section class="changed" aria-labelledby="what-changed-today">
     <h2 id="what-changed-today">What changed today</h2>
     <div class="body">
 {indent(md_to_html(changed.body_md), 6)}
     </div>
   </section>
+  {vision_revised_line(update)}
   <details class="vision-fold">
     <summary>Show the full vision</summary>
     <div class="body">
@@ -679,29 +741,34 @@ def render_update(update: Update, updates: list[Update]) -> str:
 def render_archive(updates: list[Update]) -> str:
     items: list[str] = []
     for update in updates:
+        revised_pill = ""
+        if is_vision_revision(update, updates):
+            revised_pill = ' <span class="pill pill-revised">VISION REVISED</span>'
         items.append(
             "<li>\n"
             f'  <a href="../{update.slug_path}">\n'
             '    <span class="item-meta">'
             f'<time datetime="{update.published.isoformat()}">{html.escape(long_date(update.published))}</time> '
             f'<span class="pill">Horizon {update.horizon.year}</span>'
+            f"{revised_pill}"
             "</span>\n"
             '    <span class="change-label">What changed</span>\n'
             f'    <span class="item-title">{html.escape(update.summary)}</span>\n'
             f'    <span class="item-name">{html.escape(update.headline)}</span>\n'
+            f'    <span class="item-revised">Vision last revised {html.escape(short_date(update.vision_revised))}</span>\n'
             "  </a>\n"
             "</li>"
         )
     main = f"""
-<h1>Revisions</h1>
-<p class="dek">A timeline of how the forecast moved, newest first. Each row is a change, not a separate essay. The horizon is ten years after that day's date.</p>
+<h1>Editions</h1>
+<p class="dek">Every weekday edition, newest first. The vision text stays put until a material rewrite. The horizon is ten years after that day's date.</p>
 <ul class="takeaways">
 {indent(chr(10).join(items), 2)}
 </ul>
 """
     return page(
-        f"Revisions — {SITE_TITLE}",
-        "A timeline of how the ten-year forecast changed, newest first.",
+        f"Editions — {SITE_TITLE}",
+        "Every weekday edition of the ten-year forecast, newest first.",
         1,
         main,
     )
@@ -711,7 +778,7 @@ def render_404() -> str:
     main = """
 <h1>Page not found</h1>
 <p class="dek">That page is not part of the forecast.</p>
-<p class="more"><a href="index.html">Latest revision</a></p>
+<p class="more"><a href="index.html">Latest edition</a></p>
 """
     return page(f"Page not found — {SITE_TITLE}", TAGLINE, 0, main)
 
@@ -723,6 +790,7 @@ def write_current(update: Update) -> None:
         "---\n"
         f"date: {update.published.isoformat()}\n"
         f"horizon: {update.horizon.isoformat()}\n"
+        f"vision_revised: {update.vision_revised.isoformat()}\n"
         f"headline: {yaml_quote(update.headline)}\n"
         f"summary: {yaml_quote(update.summary)}\n"
         f"source: {update.slug_path}update.md\n"
@@ -742,6 +810,7 @@ def write_json(updates: list[Update]) -> None:
             {
                 "date": update.published.isoformat(),
                 "horizon": update.horizon.isoformat(),
+                "vision_revised": update.vision_revised.isoformat(),
                 "headline": update.headline,
                 "summary": update.summary,
                 "path": update.slug_path,
@@ -773,6 +842,8 @@ STYLES = """/* Generated by scripts/build_site.py. Edit that file and rebuild. *
   --line: #e2e0da;
   --selection: #d5e4f5;
   --code-bg: #e5eef6;
+  --banner-bg: #9a3412;
+  --banner-fg: #fff7ed;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -787,6 +858,8 @@ STYLES = """/* Generated by scripts/build_site.py. Edit that file and rebuild. *
     --line: #2c333c;
     --selection: #1f5c99;
     --code-bg: #1c2c3d;
+    --banner-bg: #fdba74;
+    --banner-fg: #1c1008;
   }
 }
 
@@ -924,6 +997,38 @@ time {
   font-weight: 600;
   letter-spacing: 0.01em;
   line-height: 1.4;
+}
+
+.pill-revised {
+  background: var(--banner-bg);
+  color: var(--banner-fg);
+  letter-spacing: 0.06em;
+}
+
+.vision-banner {
+  margin: 0 0 1.35rem;
+  padding: 0.95rem 1rem;
+  border: 3px solid var(--banner-bg);
+  background: var(--banner-bg);
+  color: var(--banner-fg);
+  font-size: clamp(1.45rem, 4.8vw, 1.9rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.vision-revised {
+  margin: 0 0 1.15rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.vision-revised time {
+  color: var(--text);
+  font-size: 1.05rem;
+  font-weight: 700;
 }
 
 .dek {
@@ -1125,6 +1230,12 @@ strong {
   line-height: 1.4;
 }
 
+.item-revised {
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
 .takeaways a:hover .item-title,
 .takeaways a:focus-visible .item-title {
   color: var(--accent);
@@ -1235,9 +1346,13 @@ FAVICON = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="i
 
 README = """# Russia in 10 years
 
-A weekday record of how a ten-year forecast of the Russian Federation changes. The horizon is the publication date plus ten years. It is never a fixed year. The site is in English.
+The public name is Russia in 10 years. The subject of the forecast is the Russian Federation. The site is in English.
 
-The thing to read is the history of the revisions. Each edition leads with what moved that day. The full vision is the living text those notes revise. It is kept, and it is not the front page.
+Publish an edition every weekday, even when the ten-year vision does not change. The horizon is the publication date plus ten years. It is never a fixed year.
+
+Each edition leads with the news. Take a few key stories. For each one, say whether it strengthens, weakens, leaves uncertain, or does not move the living vision. The vision text stays stable. Copy it forward word for word, except a light roll of the pictured calendar date to the new horizon, unless a material change requires a real rewrite.
+
+`vision_revised` is the date the vision text was last rewritten. It is separate from the edition date. When the two dates match, that day revised the vision. When `vision_revised` is earlier, the vision was carried forward. On a later revision day, the page leads with a loud VISION REVISED banner. On a carry-forward day, it does not. The first edition sets the vision down, so it does not use that banner.
 
 A chair gathers Russian Federation–related news. Three philosopher personas comment. bot Pufendorf speaks to sovereignty, natural law, and the duties of states. bot Popper speaks to the open society, piecemeal reform, and the refusal to treat history as a script. bot Socrates asks the questions that unsettle a confident forecast.
 
@@ -1245,31 +1360,32 @@ The site is static. Relative links are used throughout, so the same files work o
 
 ## Read
 
-- `index.html` — what changed today, then the vision folded, then Society in ten points in full, then the revision timeline
-- `archive/index.html` — every revision, newest first, listed by the change
-- `updates/YYYY-MM-DD/index.html` — that day's change, with the full vision folded underneath and Society in ten points last
+- `index.html` — today's news, the vision-revised date, the vision folded, Society in ten points in full, then the timeline
+- `archive/index.html` — every weekday edition, newest first, with the vision-revised date
+- `updates/YYYY-MM-DD/index.html` — that day's news, with the full vision folded underneath and Society in ten points last
 - `updates/updates.json` — the same list, for anything that wants data rather than HTML
-- `vision/current.md` — the latest full vision, regenerated from the newest update
+- `vision/current.md` — the latest full vision, regenerated from the newest update, including `vision_revised`
 
 ## Add a weekday update
 
-Create `updates/YYYY-MM-DD/update.md`. The folder name and the `date` field must match. `horizon` must be that date plus ten years. When the day is 29 February and the horizon year is not a leap year, use 28 February.
+Create `updates/YYYY-MM-DD/update.md`. The folder name and the `date` field must match. `horizon` must be that date plus ten years. When the day is 29 February and the horizon year is not a leap year, use 28 February. `vision_revised` is the date the vision text was last materially rewritten (`YYYY-MM-DD`). It cannot be later than the edition date. On a carry-forward day, keep the previous value. On a revision day, set it to today's date.
 
 ```yaml
 ---
-date: 2026-09-30
-horizon: 2036-09-30
-headline: Short title of the revision
-summary: One line on what changed.
+date: 2026-10-05
+horizon: 2036-10-05
+vision_revised: 2026-09-30
+headline: Short title of the day's news
+summary: One line on what the news did to the living vision.
 ---
 ```
 
-`summary` is the change in one line. It is the title of the day and the line the timeline shows. `headline` is the short name of the revision, shown as a label, not as the thing the reader meets first.
+`summary` is the day in one line. It is the title of the edition and the line the timeline shows. `headline` is a short label. On a day that rewrites the vision, lead the headline or summary with VISION REVISED so the change is obvious. The builder also prints a loud banner when `vision_revised` equals `date` after the first edition.
 
 The body uses these sections, in order:
 
-1. `## What changed today` — the primary note. Open with a changelog of bullets (what was revised, strengthened, weakened, or newly uncertain), then a short narrative. Compare with the previous vision.
-2. `## Vision for YYYY` — the full living forecast after today's revisions, about 600 to 1200 words, naming the horizon year
+1. `## What changed today` — the primary note. Open with a changelog of bullets (strengthened, weakened, newly uncertain, or not moved), then a short narrative. On a carry-forward day, say that the vision text is unchanged and name the vision-revised date. On a revision day, say what was rewritten.
+2. `## Vision for YYYY` — the full living forecast, about 600 to 1250 words, naming the horizon year. Copy the previous text forward, and roll the pictured calendar date to the new horizon, unless the news forces a material rewrite.
 3. `## Philosophers` — brief attributed notes from bot Pufendorf, bot Popper, and bot Socrates
 4. `## Falsifiers` — optional; what evidence would force this vision to be revised
 5. `## Society in ten points` — required last section, after Philosophers and after Falsifiers when that section is present. The ten labels stay fixed. Carry the same lines forward; rewrite a line only when the vision itself has a material social change, not when the day's news only deepens an already-named path.
@@ -1388,6 +1504,8 @@ def smoke(updates: list[Update]) -> None:
         vision_text = (ROOT / "vision" / "current.md").read_text(encoding="utf-8")
         if "This is a baseline, not a prophecy." not in vision_text:
             errors.append("vision/current.md does not hold the latest vision")
+        if f"vision_revised: {latest.vision_revised.isoformat()}" not in vision_text:
+            errors.append("vision/current.md is missing vision_revised")
         if "This is a baseline, not a prophecy." not in index:
             errors.append("index does not show the latest vision")
         data = json.loads((UPDATES_DIR / "updates.json").read_text(encoding="utf-8"))
@@ -1395,6 +1513,8 @@ def smoke(updates: list[Update]) -> None:
             errors.append("updates.json is not ordered newest first")
         if data["updates"][0]["path"] != latest.slug_path:
             errors.append("updates.json path does not match the latest update")
+        if data["updates"][0].get("vision_revised") != latest.vision_revised.isoformat():
+            errors.append("updates.json is missing vision_revised on the latest edition")
         if "Society in ten points" not in index:
             errors.append("index is missing Society in ten points")
         if "Society in ten points" not in update_html:
@@ -1427,6 +1547,84 @@ def smoke(updates: list[Update]) -> None:
         for name in PHILOSOPHERS:
             if name not in readme:
                 errors.append(f"README does not name {name}")
+        if "vision_revised" not in readme:
+            errors.append("README does not document vision_revised")
+        if "every weekday" not in readme.lower():
+            errors.append("README should say an edition is published every weekday")
+
+        revised_label = short_date(latest.vision_revised)
+        horizon_label = short_date(latest.horizon)
+        for label, text in (
+            ("index", index),
+            ("latest update", update_html),
+        ):
+            if "Vision last revised:" not in text:
+                errors.append(f"{label} is missing the vision last revised line")
+            if revised_label not in text:
+                errors.append(f"{label} is missing the vision revised date {revised_label}")
+            revised_at = text.find("Vision last revised:")
+            details_at = text.find("<details")
+            if not (0 <= revised_at < details_at):
+                errors.append(
+                    f"{label} should show Vision last revised before the folded vision"
+                )
+            banner_at = text.find('class="vision-banner"')
+            if is_vision_revision(latest, updates):
+                if banner_at < 0 or banner_at > text.find("<h1>"):
+                    errors.append(f"{label} should lead with the VISION REVISED banner")
+                if "Carried forward" in text:
+                    errors.append(f"{label} should not say carried forward on a revision day")
+            else:
+                if banner_at >= 0:
+                    errors.append(f"{label} should not show the VISION REVISED banner")
+                if latest.vision_revised < latest.published and "Carried forward" not in text:
+                    errors.append(f"{label} should mark a carried-forward vision")
+        if horizon_label not in index:
+            errors.append(f"index vision should picture {horizon_label}")
+        if len(updates) >= 2 and latest.vision_revised < latest.published:
+            previous = updates[1]
+            old_horizon = short_date(previous.horizon)
+            latest_vision = latest.section("vision for")
+            assert latest_vision is not None
+            changed = latest.section("what changed today")
+            assert changed is not None
+            if old_horizon != horizon_label and old_horizon in latest_vision.full_md:
+                errors.append(
+                    f"latest vision still pictures {old_horizon}; roll the horizon date forward"
+                )
+            if horizon_label not in latest_vision.full_md:
+                errors.append(f"latest vision should picture {horizon_label}")
+            if revised_label not in latest_vision.full_md:
+                errors.append(
+                    "carry-forward vision should name the date the baseline was last revised"
+                )
+            if "carried forward" not in latest_vision.full_md.lower():
+                errors.append("carry-forward vision should say it is carried forward")
+            if revised_label not in changed.body_md:
+                errors.append(
+                    "What changed today should name the vision last revised date"
+                )
+            if "carried forward" not in changed.body_md.lower():
+                errors.append(
+                    "What changed today should say the vision is carried forward"
+                )
+        for update in updates:
+            page_html = (update.folder / "index.html").read_text(encoding="utf-8")
+            if "Vision last revised:" not in page_html:
+                errors.append(
+                    f"{update.slug_path} is missing the vision last revised line"
+                )
+            if short_date(update.vision_revised) not in page_html:
+                errors.append(
+                    f"{update.slug_path} is missing its vision revised date"
+                )
+            has_banner = 'class="vision-banner"' in page_html
+            if is_vision_revision(update, updates) and not has_banner:
+                errors.append(f"{update.slug_path} is a revision day and needs the banner")
+            if not is_vision_revision(update, updates) and has_banner:
+                errors.append(f"{update.slug_path} should not show the VISION REVISED banner")
+        if f"Vision last revised {short_date(latest.vision_revised)}" not in archive:
+            errors.append("archive should show the latest vision revised date")
 
     if errors:
         fail(errors)
@@ -1454,7 +1652,7 @@ def main() -> None:
     updates = load_updates()
     clean_stale_pages(updates)
     latest = updates[0]
-    (ROOT / "index.html").write_text(render_index(latest), encoding="utf-8")
+    (ROOT / "index.html").write_text(render_index(latest, updates), encoding="utf-8")
     archive_dir = ROOT / "archive"
     archive_dir.mkdir(parents=True, exist_ok=True)
     (archive_dir / "index.html").write_text(render_archive(updates), encoding="utf-8")
@@ -1469,9 +1667,16 @@ def main() -> None:
     vision = latest.section("vision for")
     assert vision is not None
     print(f"Built {len(updates)} update{'s' if len(updates) != 1 else ''}.")
+    if is_vision_revision(latest, updates):
+        vision_state = "vision revised today"
+    elif latest.vision_revised < latest.published:
+        vision_state = "vision carried forward"
+    else:
+        vision_state = "vision set down"
     print(
         f"Latest {latest.published.isoformat()} → {latest.horizon.isoformat()} "
-        f"({word_count(vision.full_md)} vision words): {latest.headline}"
+        f"(vision_revised {latest.vision_revised.isoformat()}, {vision_state}, "
+        f"{word_count(vision.full_md)} vision words): {latest.headline}"
     )
 
 

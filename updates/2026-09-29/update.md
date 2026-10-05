@@ -1,6 +1,7 @@
 ---
 date: 2026-09-29
 horizon: 2036-09-29
+vision_revised: 2026-09-29
 headline: Opening vision
 summary: Opening baseline for the Russian Federation in 2036, published before the first weekday news cycle.
 ---
