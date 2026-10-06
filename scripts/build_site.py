@@ -1433,6 +1433,32 @@ def local_target(html_path: Path, href: str) -> Path | None:
     return resolved
 
 
+def philosopher_note(page_html: str, name: str) -> str | None:
+    """Return the note under a bot label, or None when that label is absent.
+
+    Update pages render each note as ``<strong>{name}.</strong>`` followed by
+    the note text in the same list item, inside the Philosophers section. An
+    empty string means the label is present and the note under it is blank.
+    The check looks at that structure, not at any fixed sentence.
+    """
+    section_at = page_html.find('id="philosophers"')
+    if section_at < 0:
+        return None
+    section = page_html[section_at:]
+    next_section = section.find("</section>")
+    if next_section >= 0:
+        section = section[:next_section]
+    marker = f"<strong>{html.escape(name)}.</strong>"
+    start = section.find(marker)
+    if start < 0:
+        return None
+    rest = section[start + len(marker) :]
+    end = rest.find("</li>")
+    chunk = rest if end < 0 else rest[:end]
+    text = re.sub(r"<[^>]+>", "", chunk)
+    return html.unescape(text).strip()
+
+
 def smoke(updates: list[Update]) -> None:
     errors: list[str] = []
     html_files = [
@@ -1489,8 +1515,15 @@ def smoke(updates: list[Update]) -> None:
             errors.append("index should lead with what changed, before the vision")
         if "<details" not in index:
             errors.append("index should fold the rest of the vision")
-        if "Sovereignty is a duty before it is a licence." in index:
-            errors.append("index should not repeat the philosopher excerpts")
+        index_text = html.unescape(index)
+        philosopher_notes = {
+            name: philosopher_note(update_html, name) for name in PHILOSOPHERS
+        }
+        for name, note in philosopher_notes.items():
+            if not note:
+                errors.append(f"update page is missing the {name} note")
+            elif note in index_text:
+                errors.append(f"index should not repeat the {name} excerpt")
         if f'href="../{latest.slug_path}"' not in archive:
             errors.append("archive does not link to the latest update")
         if f'<span class="item-title">{html.escape(latest.summary)}</span>' not in archive:
@@ -1499,8 +1532,6 @@ def smoke(updates: list[Update]) -> None:
             errors.append("update page does not link home")
         if 'href="../../archive/"' not in update_html:
             errors.append("update page does not link to the archive")
-        if "Sovereignty is a duty before it is a licence." not in update_html:
-            errors.append("update page is missing the Pufendorf note")
         vision_text = (ROOT / "vision" / "current.md").read_text(encoding="utf-8")
         if "This is a baseline, not a prophecy." not in vision_text:
             errors.append("vision/current.md does not hold the latest vision")
