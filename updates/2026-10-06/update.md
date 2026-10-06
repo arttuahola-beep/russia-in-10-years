@@ -2,10 +2,18 @@
 date: 2026-10-06
 horizon: 2036-10-06
 vision_revised: 2026-09-30
-headline: "Moscow drone night and falling oil revenue deepen known paths"
-summary: "Weekday news strengthens the long-war, energy-at-home and fiscal-squeeze lines already in the vision; the ten-year text is unchanged."
-source: updates/2026-10-06/update.md
+headline: Moscow drone night and falling oil revenue deepen known paths
+summary: Weekday news strengthens the long-war, energy-at-home and fiscal-squeeze lines already in the vision; the ten-year text is unchanged.
 ---
+
+## What changed today
+
+- **Strengthened.** Overnight from 5 to 6 October, about 650 drones flew toward the Moscow region, Mayor Sobyanin said. Regional governor Vorobyov said one man was killed and six people were injured. All four Moscow airports restricted flights. The Russian OSINT channel ASTRA reported a fire at the Volodarskaya fuel depot, the region's largest. That strengthens the long-war line. It also strengthens the line that energy can be hit at home. ([TASS](https://tass.com/emergencies/2197897), [TASS](https://tass.com/emergencies/2197909), [bne IntelliNews](https://www.intellinews.com/missile-war-monitor-russia-says-650-drones-flew-at-moscow-region-overnight-473791/), [LIGA.net](https://news.liga.net/en/war/news/russias-largest-oil-depot-in-the-moscow-region-is-on-fire-following-a-drone-attack-video))
+- **Strengthened.** Oil and gas revenue for the federal budget fell 17% in January–September, year on year, Reuters reported. It was 5.47 trillion rubles, against 6.61 trillion a year earlier. Urals crude was higher, but output and exports were lower, partly after drone attacks on refineries, and the ruble was stronger. That strengthens the money-squeeze line and the line that energy income can be hit at home. It is not a default. ([The Insider](https://theins.press/en/news/297921), citing Reuters)
+- **Not moved.** On 5 October, Finance Minister Siluanov told the Federation Council that the 2027–29 budget is "resilient to any scenario." He said the base price for Urals is cut from $59 to $50 a barrel, and that oil and gas will be no more than 17% of revenue. That is a plan and a claim. It does not show that energy's role in funding the state has been replaced. ([TASS](https://tass.com/economy/2197805))
+- **Strengthened.** The planned three-way meeting with the United States and Ukraine has slipped from early October to late October. People close to the talks told the Kyiv Independent that Moscow shows little urgency. A Ukrainian official said Russia rejected an Indian ceasefire plan; that claim has one source. This continues the path of contact without trust that the vision already names. ([Kyiv Independent](https://kyivindependent.com/trumps-ukraine-russia-peace-gambit-begins-to-unravel-again/))
+
+The ten-year text is carried forward. It is not rewritten. Vision last revised: 30 September 2026. Today's news makes known paths firmer. It does not require a new picture of 2036.
 
 ## Vision for 2036
 
@@ -48,3 +56,35 @@ Russia in 2036 is a nuclear power, a large commodity exporter, and a regional mi
 ### How to read this revision
 
 Each claim can be kept, narrowed, or dropped by a later weekday edition.
+
+## Philosophers
+
+- **bot Pufendorf.** Sovereignty is a duty before it is a licence. A state that cannot keep fire from its capital's fuel depots still owes its people protection. Hundreds of drones over Moscow test that duty. They do not create a new one. The vision already holds a war that reaches home. The text does not need a rewrite.
+
+- **bot Popper.** Two numbers came out on the same day. Revenue from oil and gas fell by 17%. The minister says the budget no longer depends on it. Both can be true for a while. Neither is a law of history. The vision already holds a squeeze without a default. Keep it until a fact breaks it.
+
+- **bot Socrates.** If the budget can survive any scenario, why cut the oil price it assumes? If Moscow wants talks, why does the meeting keep moving? Which fact today is not already in the baseline? If you cannot name one, carry the text forward.
+
+## Falsifiers
+
+- A verified settlement or durable ceasefire that lets defence spending fall back toward pre-war shares of the budget.
+- A competitive transfer of power, or a loss of central authority across several regions, that the assumption of elite management cannot absorb.
+- A broad, durable lifting of Western sanctions and a return of advanced-technology trade, or a secondary-sanctions shock that cuts the main Asian energy outlets.
+- Evidence that the working-age population has stabilised, or that war deaths and emigration have been far larger than this baseline allows.
+- An energy system whose fiscal role has been replaced, or a price-and-strike combination that the budget cannot finance without a political crisis.
+- A binding Chinese security guarantee, or a Chinese decision to curtail the economic relationship enough to remove it as the main external pillar.
+
+## Society in ten points
+
+A compact picture of Russian Federation society at the horizon. The ten labels stay fixed. Rewrite a line only when the vision itself has a material social change — not when the day’s news only deepens an already-named path.
+
+1. **Form of government** — Highly centralised presidential–security state with managed elections; neither competitive democracy nor a formal one-party system.
+2. **Social trust** — Low generalised trust: many accommodate because exit is costly and chaos is the advertised alternative, not because institutions earn confidence.
+3. **Type of economy** — War-adapted commodity and state-led economy; oil, gas, metals, agriculture and military industry carry the budget; civilian technology leans on imports, copies and non-Western partners.
+4. **Freedom of speech and press** — Narrow and managed; independent journalism and open dissent are repressed; the official narrative dominates public channels.
+5. **Rule of law** — Instrumental: courts, governors and the legislature serve the centre more often than they check it.
+6. **Political competition** — Organised opposition stays repressed; succession and elite bargains settle before voters see them.
+7. **Civil society** — Independent association is thin and risky outside state-approved forms.
+8. **Demography and social fabric** — Smaller population than 2021 from low births, war deaths and emigration; fewer young adults tighten labour; Moscow and a few cities keep more skilled work than regions that supply soldiers and raw materials.
+9. **Information and surveillance** — Strong state information control and surveillance, including military and monitoring uses of technology.
+10. **Security apparatus in society** — Security services and a large armed force sit at the centre of political power; a long-war footing deepens that role through the late 2020s.
