@@ -3,6 +3,14 @@
   "tagline": "Weekday editions of a ten-year forecast of the Russian Federation. The vision stays until a rewrite is forced. Notes from a chair, bot Pufendorf, bot Popper, and bot Socrates.",
   "updates": [
     {
+      "date": "2026-10-07",
+      "horizon": "2036-10-07",
+      "vision_revised": "2026-09-30",
+      "headline": "Strike on Kyiv and a Baltic nuclear vote deepen known paths",
+      "summary": "Weekday news strengthens the long-war and NATO-frontier lines already in the vision; the ten-year text is unchanged.",
+      "path": "updates/2026-10-07/"
+    },
+    {
       "date": "2026-10-06",
       "horizon": "2036-10-06",
       "vision_revised": "2026-09-30",
