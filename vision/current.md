@@ -1,15 +1,15 @@
 ---
-date: 2026-10-08
-horizon: 2036-10-08
+date: 2026-10-09
+horizon: 2036-10-09
 vision_revised: 2026-09-30
-headline: "Plague denials and a record EU list test old lines"
-summary: "Kremlin denials over the Irkutsk case and a record EU sanctions list strengthen lines already in the vision; the vision is unchanged."
-source: updates/2026-10-08/update.md
+headline: "Moscow agrees on stalemate as refineries burn"
+summary: "Kremlin talk of a stalemate, new strikes on two big refineries and inflation above target strengthen lines already in the vision; the vision is unchanged."
+source: updates/2026-10-09/update.md
 ---
 
 ## Vision for 2036
 
-This is a baseline, not a prophecy. It pictures the Russian Federation on 8 October 2036. The living baseline was last revised on 30 September 2026 and is carried forward. The horizon moves with the publication date: always ten years on. Nothing here is the necessary path of Russian history.
+This is a baseline, not a prophecy. It pictures the Russian Federation on 9 October 2036. The living baseline was last revised on 30 September 2026 and is carried forward. The horizon moves with the publication date: always ten years on. Nothing here is the necessary path of Russian history.
 
 ### Political system and succession
 

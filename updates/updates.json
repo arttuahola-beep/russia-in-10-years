@@ -3,6 +3,14 @@
   "tagline": "Weekday editions of a ten-year forecast of the Russian Federation. The vision stays until a rewrite is forced. Notes from a chair, bot Pufendorf, bot Popper, and bot Socrates.",
   "updates": [
     {
+      "date": "2026-10-09",
+      "horizon": "2036-10-09",
+      "vision_revised": "2026-09-30",
+      "headline": "Moscow agrees on stalemate as refineries burn",
+      "summary": "Kremlin talk of a stalemate, new strikes on two big refineries and inflation above target strengthen lines already in the vision; the vision is unchanged.",
+      "path": "updates/2026-10-09/"
+    },
+    {
       "date": "2026-10-08",
       "horizon": "2036-10-08",
       "vision_revised": "2026-09-30",
