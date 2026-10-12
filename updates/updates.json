@@ -3,6 +3,14 @@
   "tagline": "Weekday editions of a ten-year forecast of the Russian Federation. The vision stays until a rewrite is forced. Notes from a chair, bot Pufendorf, bot Popper, and bot Socrates.",
   "updates": [
     {
+      "date": "2026-10-12",
+      "horizon": "2036-10-12",
+      "vision_revised": "2026-09-30",
+      "headline": "Washington eases diesel sanctions as Moscow's deficit widens",
+      "summary": "A temporary US diesel licence and a much wider budget deficit strengthen lines already in the vision, the WHO finds no plague case, and the vision is unchanged.",
+      "path": "updates/2026-10-12/"
+    },
+    {
       "date": "2026-10-09",
       "horizon": "2036-10-09",
       "vision_revised": "2026-09-30",
