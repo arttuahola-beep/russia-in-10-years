@@ -3,6 +3,14 @@
   "tagline": "Weekday editions of a ten-year forecast of the Russian Federation. The vision stays until a rewrite is forced. Notes from a chair, bot Pufendorf, bot Popper, and bot Socrates.",
   "updates": [
     {
+      "date": "2026-10-13",
+      "horizon": "2036-10-13",
+      "vision_revised": "2026-09-30",
+      "headline": "Energy ceasefire fails as Europe adopts record Russia listings",
+      "summary": "Russian strikes on Ukrainian energy sites after Trump's announced pause strengthen the attrition line, Europe adds almost 1,600 listings, and the vision is unchanged.",
+      "path": "updates/2026-10-13/"
+    },
+    {
       "date": "2026-10-12",
       "horizon": "2036-10-12",
       "vision_revised": "2026-09-30",
