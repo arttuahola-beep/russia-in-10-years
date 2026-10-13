@@ -1509,7 +1509,7 @@ def smoke(updates: list[Update]) -> None:
             errors.append("index does not link to the archive")
         if "What changed today" not in index or "Vision for" not in index:
             errors.append("index is missing the vision or today's note")
-        if f"<h1>{html.escape(latest.summary)}</h1>" not in index:
+        if f"<h1>{inline(latest.summary)}</h1>" not in index:
             errors.append("index title should be the change summary, not the vision name")
         if index.find("What changed today") > index.find("Vision for"):
             errors.append("index should lead with what changed, before the vision")
