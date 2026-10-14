@@ -1,15 +1,15 @@
 ---
-date: 2026-10-13
-horizon: 2036-10-13
+date: 2026-10-14
+horizon: 2036-10-14
 vision_revised: 2026-09-30
-headline: "Energy ceasefire fails as Europe adopts record Russia listings"
-summary: "Russian strikes on Ukrainian energy sites after Trump's announced pause strengthen the attrition line, Europe adds almost 1,600 listings, and the vision is unchanged."
-source: updates/2026-10-13/update.md
+headline: "Kremlin rejects a wider pause as missiles hit Kyiv's power plant"
+summary: "Fresh strikes on Kyiv and a Kremlin refusal of any broader pause strengthen the attrition line, a reported US–European peace plan stays unconfirmed, and the vision is unchanged."
+source: updates/2026-10-14/update.md
 ---
 
 ## Vision for 2036
 
-This is a baseline, not a prophecy. It pictures the Russian Federation on 13 October 2036. The living baseline was last revised on 30 September 2026 and is carried forward. The horizon moves with the publication date: always ten years on. Nothing here is the necessary path of Russian history.
+This is a baseline, not a prophecy. It pictures the Russian Federation on 14 October 2036. The living baseline was last revised on 30 September 2026 and is carried forward. The horizon moves with the publication date: always ten years on. Nothing here is the necessary path of Russian history.
 
 ### Political system and succession
 
