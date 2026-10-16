@@ -1,15 +1,15 @@
 ---
-date: 2026-10-15
-horizon: 2036-10-15
+date: 2026-10-16
+horizon: 2036-10-16
 vision_revised: 2026-09-30
-headline: "Kremlin says the energy truce has no terms as Russia confirms hits on six power plants"
-summary: "Moscow confirms striking power plants in Kyiv and Kharkiv and says the energy ceasefire is still undefined, refinery claims stay unproven, Starlink limits hamper Ukrainian drones, Europe rebuffs a US asset idea, and the vision is unchanged."
-source: updates/2026-10-15/update.md
+headline: "Energy ceasefire collapses as Ukraine hits Ryazan and Trump calls the strikes a disgrace"
+summary: "Zelensky ends the pause on refinery strikes after Russia kept hitting power, Moscow reports debris fire at Ryazan, Trump condemns Kyiv, Starshield is partly restored, and the vision is unchanged."
+source: updates/2026-10-16/update.md
 ---
 
 ## Vision for 2036
 
-This is a baseline, not a prophecy. It pictures the Russian Federation on 15 October 2036. The living baseline was last revised on 30 September 2026 and is carried forward. The horizon moves with the publication date: always ten years on. Nothing here is the necessary path of Russian history.
+This is a baseline, not a prophecy. It pictures the Russian Federation on 16 October 2036. The living baseline was last revised on 30 September 2026 and is carried forward. The horizon moves with the publication date: always ten years on. Nothing here is the necessary path of Russian history.
 
 ### Political system and succession
 
