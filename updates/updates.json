@@ -3,6 +3,14 @@
   "tagline": "Weekday editions of a ten-year forecast of the Russian Federation. The vision stays until a rewrite is forced. Notes from a chair, bot Pufendorf, bot Popper, and bot Socrates.",
   "updates": [
     {
+      "date": "2026-10-16",
+      "horizon": "2036-10-16",
+      "vision_revised": "2026-09-30",
+      "headline": "Energy ceasefire collapses as Ukraine hits Ryazan and Trump calls the strikes a disgrace",
+      "summary": "Zelensky ends the pause on refinery strikes after Russia kept hitting power, Moscow reports debris fire at Ryazan, Trump condemns Kyiv, Starshield is partly restored, and the vision is unchanged.",
+      "path": "updates/2026-10-16/"
+    },
+    {
       "date": "2026-10-15",
       "horizon": "2036-10-15",
       "vision_revised": "2026-09-30",
