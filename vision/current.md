@@ -1,15 +1,15 @@
 ---
-date: 2026-10-16
-horizon: 2036-10-16
+date: 2026-10-19
+horizon: 2036-10-19
 vision_revised: 2026-09-30
-headline: "Energy ceasefire collapses as Ukraine hits Ryazan and Trump calls the strikes a disgrace"
-summary: "Zelensky ends the pause on refinery strikes after Russia kept hitting power, Moscow reports debris fire at Ryazan, Trump condemns Kyiv, Starshield is partly restored, and the vision is unchanged."
-source: updates/2026-10-16/update.md
+headline: "Trump waives the Graham Act as Ukraine sends 1,000 drones and hits St Petersburg's oil terminal"
+summary: "Washington shelves new secondary tariffs and Europe keeps its sanctions, Ukraine strikes oil sites as far as St Petersburg, Putin calls his border zone non-negotiable, prices and labour stay tight, and the vision is unchanged."
+source: updates/2026-10-19/update.md
 ---
 
 ## Vision for 2036
 
-This is a baseline, not a prophecy. It pictures the Russian Federation on 16 October 2036. The living baseline was last revised on 30 September 2026 and is carried forward. The horizon moves with the publication date: always ten years on. Nothing here is the necessary path of Russian history.
+This is a baseline, not a prophecy. It pictures the Russian Federation on 19 October 2036. The living baseline was last revised on 30 September 2026 and is carried forward. The horizon moves with the publication date: always ten years on. Nothing here is the necessary path of Russian history.
 
 ### Political system and succession
 
