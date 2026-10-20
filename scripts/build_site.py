@@ -923,7 +923,7 @@ header {
 
 .site-title {
   color: var(--accent);
-  font-size: 1.05rem;
+  font-size: 0.92rem;
   font-weight: 700;
   letter-spacing: -0.015em;
   text-decoration: none;
@@ -953,7 +953,7 @@ header {
 
 h1 {
   margin: 0.35rem 0 1.5rem;
-  font-size: clamp(1.7rem, 4.6vw, 2.3rem);
+  font-size: clamp(1.49rem, 4.03vw, 2.01rem);
   font-weight: 700;
   letter-spacing: -0.028em;
   line-height: 1.18;
