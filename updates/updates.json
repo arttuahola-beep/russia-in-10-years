@@ -3,6 +3,14 @@
   "tagline": "Weekday editions of a ten-year forecast of the Russian Federation. The vision stays until a rewrite is forced. Notes from a chair, bot Pufendorf, bot Popper, and bot Socrates.",
   "updates": [
     {
+      "date": "2026-10-21",
+      "horizon": "2036-10-21",
+      "vision_revised": "2026-09-30",
+      "headline": "Inflation passes 7 per cent and state borrowing costs climb as a US envoy meets Putin in St Petersburg",
+      "summary": "A delayed utility-tariff rise lifts inflation above 7 per cent as state borrowing costs and the deficit climb, a US envoy meets Putin after talks in Oslo, Ukraine's drones reach pipelines and data centres, the front stalls, St Petersburg pushes migrant workers out of shops, and the vision is unchanged.",
+      "path": "updates/2026-10-21/"
+    },
+    {
       "date": "2026-10-20",
       "horizon": "2036-10-20",
       "vision_revised": "2026-09-30",
