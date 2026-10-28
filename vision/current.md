@@ -1,15 +1,15 @@
 ---
-date: 2026-10-22
-horizon: 2036-10-22
+date: 2026-10-28
+horizon: 2036-10-28
 vision_revised: 2026-09-30
-headline: "Putin frees an American and agrees to talks in November as Washington holds back sanctions and eases them on diesel"
-summary: "Putin pardons a detained American and agrees in principle to three-way talks around 10 November while Washington delays sanctions and eases them on diesel, the Duma confirms the finance-led cabinet 430 to nil, inflation edges down to 7.15 per cent before Friday's rate decision, Ukraine's drones keep diesel exports low, emigrants keep settling abroad, and the vision is unchanged."
-source: updates/2026-10-22/update.md
+headline: "The central bank holds at 14 per cent and sees dear money through 2027 as a truce for one town and talks in Abu Dhabi take shape"
+summary: "The Bank of Russia holds its rate at 14 per cent and raises its inflation and 2027 rate forecasts, the Duma's budget committee backs a 2027 deficit far above the old plan, a local truce for Oleshky and planned talks in Abu Dhabi keep contact alive, Putin sends a governor to run the Far East, the plan to recruit migrant workers slips to March, Moscow courts gas exporters as Europe's ban on Russian gas nears, and the vision is unchanged."
+source: updates/2026-10-28/update.md
 ---
 
 ## Vision for 2036
 
-This is a baseline, not a prophecy. It pictures the Russian Federation on 22 October 2036. The living baseline was last revised on 30 September 2026 and is carried forward. The horizon moves with the publication date: always ten years on. Nothing here is the necessary path of Russian history.
+This is a baseline, not a prophecy. It pictures the Russian Federation on 28 October 2036. The living baseline was last revised on 30 September 2026 and is carried forward. The horizon moves with the publication date: always ten years on. Nothing here is the necessary path of Russian history.
 
 ### Political system and succession
 
