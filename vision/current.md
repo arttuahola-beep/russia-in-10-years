@@ -1,15 +1,15 @@
 ---
-date: 2026-11-04
-horizon: 2036-11-04
+date: 2026-11-11
+horizon: 2036-11-11
 vision_revised: 2026-09-30
-headline: "The Duma passes a war budget as regions cut pay to soldiers' families and the Abu Dhabi talks get a date"
-summary: "The Duma passes the 2027–29 budget with record defence spending and new taxes, the Defence Ministry proposes delaying December pay and regions cut payments to soldiers' families, Urals oil has its dearest month since 2014, the migrant recruitment bill slips again, talks in Abu Dhabi are set for 10–11 November without Europe, Washington's idea of Russian gas through Ukraine meets a European no, and the vision is unchanged."
-source: updates/2026-11-04/update.md
+headline: "Nearly a third of the regions cut soldiers' bonuses, Moscow borrows another trillion and Abu Dhabi talks resume without a ceasefire"
+summary: "At least 27 regions cut payments to recruits or the families of the dead, a federal bill would let payments for the dead wait seven months, the government may borrow a trillion rubles more at home, the central bank refuses to hurry rate cuts, the migrant-labour decree awaits a signature, the first three-way talks in nine months resume in Abu Dhabi, and the vision is unchanged."
+source: updates/2026-11-11/update.md
 ---
 
 ## Vision for 2036
 
-This is a baseline, not a prophecy. It pictures the Russian Federation on 4 November 2036. The living baseline was last revised on 30 September 2026 and is carried forward. The horizon moves with the publication date: always ten years on. Nothing here is the necessary path of Russian history.
+This is a baseline, not a prophecy. It pictures the Russian Federation on 11 November 2036. The living baseline was last revised on 30 September 2026 and is carried forward. The horizon moves with the publication date: always ten years on. Nothing here is the necessary path of Russian history.
 
 ### Political system and succession
 
