@@ -1,15 +1,15 @@
 ---
-date: 2026-11-11
-horizon: 2036-11-11
+date: 2026-11-18
+horizon: 2036-11-18
 vision_revised: 2026-09-30
-headline: "Nearly a third of the regions cut soldiers' bonuses, Moscow borrows another trillion and Abu Dhabi talks resume without a ceasefire"
-summary: "At least 27 regions cut payments to recruits or the families of the dead, a federal bill would let payments for the dead wait seven months, the government may borrow a trillion rubles more at home, the central bank refuses to hurry rate cuts, the migrant-labour decree awaits a signature, the first three-way talks in nine months resume in Abu Dhabi, and the vision is unchanged."
-source: updates/2026-11-11/update.md
+headline: "Refinery strikes bring petrol limits back to the regions, growth holds at 1 per cent without investment and Putin goes to Shenzhen"
+summary: "Drone strikes cut gasoline sales on the exchange by almost a third and bring purchase limits back to filling stations, third-quarter growth reaches 1 per cent while investment falls for a sixth quarter, the Duma takes a 2027 budget with a 2.2 per cent deficit, the migrant-labour decree is still unsigned, the Kremlin keeps Europe out of the next round, Putin meets Xi before a first three-way meeting with Trump, and the vision is unchanged."
+source: updates/2026-11-18/update.md
 ---
 
 ## Vision for 2036
 
-This is a baseline, not a prophecy. It pictures the Russian Federation on 11 November 2036. The living baseline was last revised on 30 September 2026 and is carried forward. The horizon moves with the publication date: always ten years on. Nothing here is the necessary path of Russian history.
+This is a baseline, not a prophecy. It pictures the Russian Federation on 18 November 2036. The living baseline was last revised on 30 September 2026 and is carried forward. The horizon moves with the publication date: always ten years on. Nothing here is the necessary path of Russian history.
 
 ### Political system and succession
 
