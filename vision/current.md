@@ -1,15 +1,15 @@
 ---
-date: 2026-11-18
-horizon: 2036-11-18
+date: 2026-11-25
+horizon: 2036-11-25
 vision_revised: 2026-09-30
-headline: "Refinery strikes bring petrol limits back to the regions, growth holds at 1 per cent without investment and Putin goes to Shenzhen"
-summary: "Drone strikes cut gasoline sales on the exchange by almost a third and bring purchase limits back to filling stations, third-quarter growth reaches 1 per cent while investment falls for a sixth quarter, the Duma takes a 2027 budget with a 2.2 per cent deficit, the migrant-labour decree is still unsigned, the Kremlin keeps Europe out of the next round, Putin meets Xi before a first three-way meeting with Trump, and the vision is unchanged."
-source: updates/2026-11-18/update.md
+headline: "Fuel limits spread as Putin promises retaliation, the 2027 budget clears the Duma and deaths outrun births by a record since covid"
+summary: "Refinery strikes push fuel limits into more regions and onto the Kremlin's agenda, the Duma passes the 2027 budget with about 17 trillion rubles for defence, inflation edges up to 7.08 per cent, a demographer estimates the largest natural loss since covid, the migrant-labour decree is still unsigned, Shenzhen ends with a declaration that does not name Ukraine, Europe is asked to Moscow rather than to the table, and the vision is unchanged."
+source: updates/2026-11-25/update.md
 ---
 
 ## Vision for 2036
 
-This is a baseline, not a prophecy. It pictures the Russian Federation on 18 November 2036. The living baseline was last revised on 30 September 2026 and is carried forward. The horizon moves with the publication date: always ten years on. Nothing here is the necessary path of Russian history.
+This is a baseline, not a prophecy. It pictures the Russian Federation on 25 November 2036. The living baseline was last revised on 30 September 2026 and is carried forward. The horizon moves with the publication date: always ten years on. Nothing here is the necessary path of Russian history.
 
 ### Political system and succession
 
